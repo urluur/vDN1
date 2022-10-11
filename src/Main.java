@@ -32,7 +32,7 @@ public class Main {
         int count = 0;
         
         for (int i = 0; i < stevila.length; i++) {
-            boolean razlicno = false;
+            boolean razlicno = true;
             if (i == 0) {
                 stevilaDistinct[i] = stevila[i];
                 count++;
@@ -40,10 +40,8 @@ public class Main {
             }
             for (int j = 0; j <= count; j++) {
                 if (stevila[i] == stevilaDistinct[j]) {
+                    razlicno = false;
                     break;
-                }
-                else {
-                    razlicno = true;
                 }
             }
             if (razlicno) {
@@ -51,7 +49,6 @@ public class Main {
                 count++;
             }
         }
-
         return count;
     }
 }
