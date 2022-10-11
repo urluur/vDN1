@@ -27,9 +27,31 @@ public class Main {
         if (stevila.length == 0) {
             return 0;
         }
-        int[] stevilaDistinct = new int[stevila.length]; // bolj optimalna opcija bi bila z listi
+        int[] stevilaDistinct = new int[stevila.length];
+
         int count = 0;
         
+        for (int i = 0; i < stevila.length; i++) {
+            boolean razlicno = false;
+            if (i == 0) {
+                stevilaDistinct[i] = stevila[i];
+                count++;
+                continue;
+            }
+            for (int j = 0; j <= count; j++) {
+                if (stevila[i] == stevilaDistinct[j]) {
+                    break;
+                }
+                else {
+                    razlicno = true;
+                }
+            }
+            if (razlicno) {
+                stevilaDistinct[count] = stevila[i];
+                count++;
+            }
+        }
+
         return count;
     }
 }
