@@ -1,0 +1,25 @@
+Prva domača naloga nas bo popeljala v svet števil.
+
+Namen naloge je spoznati študenta z zankami in vejitvenimi strukturami. Izdelali bomo program, ki bo analiziral vnešena cela števila(Integer). Program prebere števila iz standardnega vhoda (uprabnik določi koliko števil bo vnesel!).
+
+Program naj izpiše:
+
+    število elementov (števil)
+    število različnih števil
+    število sodih števil
+    število lihih števil
+    frekvenco pojavitev vsakega števila (v procentih)
+    število, ki se največkrat ponovi
+    največje število
+    drugo najmanjšo vrednost števil
+    povprečje vseh števil
+    standardno deviacijo
+    mediano
+    vsoto vseh števil
+    koliko je palindromnih števil
+    največje palindromno število, ki je manjše od največjega števila v polju in hkrati palindrom (število ni nujno element polja).
+    Program naj na koncu še izpiše vsa števila, ki so v polju, ločena z vejicami, v obratnem vrstnem redu kot so bila vnešena.
+
+OPOMBA: pri računanju pazite na int overflow!
+
+DRUGA OPOMBA: ne pozabite na pogodbe!
