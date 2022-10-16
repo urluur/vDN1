@@ -26,7 +26,7 @@ public class Main {
         steviloSodihInLihih(stevila);
 
         // 5. frekvenca pojavitev vsakega števila (v procentih)
-        // frekvencaPojavitveProcenti(stevila);
+        frekvencaPojavitveProcenti(stevila);
         
     }
 
@@ -65,10 +65,7 @@ public class Main {
         }
 
         int[] stevilaDistinctCut = new int[count];
-        for (int i = 0; i < count; i++) {
-            stevilaDistinctCut[i] = stevilaDistinctUncut[i];
-        }
-        System.out.println(Arrays.toString(stevilaDistinctCut));
+        System.arraycopy(stevilaDistinctUncut, 0, stevilaDistinctCut, 0, count);
         return stevilaDistinctCut;
     }
 
@@ -88,14 +85,22 @@ public class Main {
         System.out.printf("Stevilo lihih stevil: %d\n", st_lihih);
     }
 
-    // public static void frekvencaPojavitveProcenti(int[] stevila) {
-    //     int[] stevilaDistinct = vrniDistinctArray(stevila);
-    //     int st_razlicnih = stevilaDistinct.length;
+    public static void frekvencaPojavitveProcenti(int[] stevila) {
+        int[] stevilaDistinct = vrniDistinctArray(stevila);
+        System.out.println(Arrays.toString(stevilaDistinct));
+        double st_razlicnih = stevilaDistinct.length;
 
-    //     for (int stevilo : stevilaDistinct) {
-
-    //     }
-    // }
+        for (int stevilo : stevilaDistinct) {
+            int st_ponovitev = 0;
+            for (int trenutno_st : stevila) {
+                if (stevilo == trenutno_st) {
+                    st_ponovitev++;
+                }
+            }
+            double odstotki = (st_ponovitev / st_razlicnih) * 100;
+            System.out.printf("Stevilo %d predstavlja %f%% vseh stevil.\n", stevilo, odstotki);
+        }
+    }
 
 
 }
