@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -20,35 +21,81 @@ public class Main {
 
         // 2. število različnih 
         System.out.printf("Stevilo razlicnih elementov: %d\n", countRazlicnaSt(stevila));
-    
+        
+        // 3. 4.  število sodih in lihih števil
+        steviloSodihInLihih(stevila);
+
+        // 5. frekvenca pojavitev vsakega števila (v procentih)
+        // frekvencaPojavitveProcenti(stevila);
+        
     }
 
     public static int countRazlicnaSt(int[] stevila) {
         if (stevila.length == 0) {
             return 0;
         }
-        int[] stevilaDistinct = new int[stevila.length];
+        int[] stevilaDistinct = vrniDistinctArray(stevila);
+
+        return stevilaDistinct.length;
+
+    }
+
+    public static int[] vrniDistinctArray(int[] stevila) {
+        int[] stevilaDistinctUncut = new int[stevila.length];
 
         int count = 0;
         
         for (int i = 0; i < stevila.length; i++) {
             boolean razlicno = true;
             if (i == 0) {
-                stevilaDistinct[i] = stevila[i];
+                stevilaDistinctUncut[i] = stevila[i];
                 count++;
                 continue;
             }
             for (int j = 0; j <= count; j++) {
-                if (stevila[i] == stevilaDistinct[j]) {
+                if (stevila[i] == stevilaDistinctUncut[j]) {
                     razlicno = false;
                     break;
                 }
             }
             if (razlicno) {
-                stevilaDistinct[count] = stevila[i];
+                stevilaDistinctUncut[count] = stevila[i];
                 count++;
             }
         }
-        return count;
+
+        int[] stevilaDistinctCut = new int[count];
+        for (int i = 0; i < count; i++) {
+            stevilaDistinctCut[i] = stevilaDistinctUncut[i];
+        }
+        System.out.println(Arrays.toString(stevilaDistinctCut));
+        return stevilaDistinctCut;
     }
+
+    public static void steviloSodihInLihih(int[] stevila) {
+        int st_sodih = 0;
+        int st_lihih = 0;
+
+        for (int stevilo : stevila) {
+            if (stevilo % 2 == 0) {
+                st_sodih++;
+            }
+            else {
+                st_lihih++;
+            }
+        }
+        System.out.printf("Stevilo sodih stevil: %d\n", st_sodih);
+        System.out.printf("Stevilo lihih stevil: %d\n", st_lihih);
+    }
+
+    // public static void frekvencaPojavitveProcenti(int[] stevila) {
+    //     int[] stevilaDistinct = vrniDistinctArray(stevila);
+    //     int st_razlicnih = stevilaDistinct.length;
+
+    //     for (int stevilo : stevilaDistinct) {
+
+    //     }
+    // }
+
+
 }
