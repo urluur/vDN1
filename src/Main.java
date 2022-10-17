@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -87,8 +86,7 @@ public class Main {
 
     public static void frekvencaPojavitveProcenti(int[] stevila) {
         int[] stevilaDistinct = vrniDistinctArray(stevila);
-        System.out.println(Arrays.toString(stevilaDistinct));
-        double st_razlicnih = stevilaDistinct.length;
+        double st_razlicnih = stevila.length;
 
         for (int stevilo : stevilaDistinct) {
             int st_ponovitev = 0;
@@ -101,6 +99,4 @@ public class Main {
             System.out.printf("Stevilo %d predstavlja %f%% vseh stevil.\n", stevilo, odstotki);
         }
     }
-
-
 }
