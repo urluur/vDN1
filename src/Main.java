@@ -26,6 +26,9 @@ public class Main {
 
         // 5. frekvenca pojavitev vsakega števila (v procentih)
         frekvencaPojavitveProcenti(stevila);
+
+        // 6. število, ki se največkrat ponovi
+        steviloKiSeNajveckratPonovi(stevila);
         
     }
 
@@ -98,5 +101,40 @@ public class Main {
             double odstotki = (st_ponovitev / st_razlicnih) * 100;
             System.out.printf("Stevilo %d predstavlja %f%% vseh stevil.\n", stevilo, odstotki);
         }
+    }
+
+    public static void steviloKiSeNajveckratPonovi(int[] stevila) {
+        int[] stevilaDistinct = vrniDistinctArray(stevila);
+        int[] stevecDistinct = new int[stevilaDistinct.length];
+
+        for (int stevilo : stevila) {
+            for (int i = 0; i < stevilaDistinct.length; i++) {
+                if (stevilo == stevilaDistinct[i]) {
+                    stevecDistinct[i]++;
+                }
+            }
+        }
+        int lokacija_najvecjega = 0; 
+        int ponavljanje_enakofrekvencnih = 0;
+        int najvecja_ponovitev = 0;
+
+        for (int i = 0; i < stevecDistinct.length; i++) {
+            if (stevecDistinct[i] > najvecja_ponovitev) {
+                najvecja_ponovitev = stevecDistinct[i];
+                lokacija_najvecjega = i;
+                ponavljanje_enakofrekvencnih = 1;
+            }
+            else if (stevecDistinct[i] == najvecja_ponovitev) {
+                ponavljanje_enakofrekvencnih++;
+            }
+        }
+
+        System.out.println("Najveckrat se ponovi stevilo " + stevilaDistinct[lokacija_najvecjega]);
+        // while(ponavljanje_enakofrekvencnih > 1) {
+        //     System.out.print("ampak si deli prvo stopničko s stevilom ");
+        //     if (stevilaDistinct[lokacija_najvecjega] == najvecja_ponovitev) {
+
+        //     }
+        // }
     }
 }
