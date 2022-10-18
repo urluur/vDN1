@@ -35,7 +35,7 @@ public class Main {
         System.out.println("Najvecje stevilo je: " + vrniNajvecje(stevila));
 
         // 8. drugo najmanjšo vrednost števil
-        System.out.println("Druga najmanjsa vrednost stevil je: " + vrniDrugoNajmanjso(stevila));
+        vrniDrugoNajmanjso(stevila);
     }
 
     public static int countRazlicnaSt(int[] stevila) {
@@ -156,15 +156,17 @@ public class Main {
         return najvecje;
     }
 
-    public static int vrniDrugoNajmanjso(int[] stevila) {
+    public static void vrniDrugoNajmanjso(int[] stevila) {
         Arrays.sort(stevila);
+        int dolzina_distinct_arr = vrniDistinctArray(stevila).length;
         int i = 0;
         while (stevila[i] == stevila[0]) {
             i++;
-            if(i > stevila.length) {
-                return -1;
+            if(i > dolzina_distinct_arr) {
+                System.out.println("Drugo najmanjse stevilo ne obstaja");
+                return;
             }
         }
-        return stevila[i];
+        System.out.println("Drugo najmanjse stevilo je " + stevila[i]);
     }
 }
