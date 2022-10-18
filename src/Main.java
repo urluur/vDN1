@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -29,7 +30,12 @@ public class Main {
 
         // 6. število, ki se največkrat ponovi
         steviloKiSeNajveckratPonovi(stevila);
-        
+
+        // 7. največje število
+        System.out.println("Najvecje stevilo je: " + vrniNajvecje(stevila));
+
+        // 8. drugo najmanjšo vrednost števil
+        System.out.println("Druga najmanjsa vrednost stevil je: " + vrniDrugoNajmanjso(stevila));
     }
 
     public static int countRazlicnaSt(int[] stevila) {
@@ -138,5 +144,27 @@ public class Main {
             }
             lokacija_najvecjega++;
         }
+    }
+
+    public static int vrniNajvecje(int[] stevila) {
+        int najvecje = Integer.MIN_VALUE;
+        for (int stevilo : stevila) {
+            if (stevilo > najvecje) {
+                najvecje = stevilo;
+            }
+        }
+        return najvecje;
+    }
+
+    public static int vrniDrugoNajmanjso(int[] stevila) {
+        Arrays.sort(stevila);
+        int i = 0;
+        while (stevila[i] == stevila[0]) {
+            i++;
+            if(i > stevila.length) {
+                return -1;
+            }
+        }
+        return stevila[i];
     }
 }
