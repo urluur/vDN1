@@ -130,11 +130,13 @@ public class Main {
         }
 
         System.out.println("Najveckrat se ponovi stevilo " + stevilaDistinct[lokacija_najvecjega]);
-        // while(ponavljanje_enakofrekvencnih > 1) {
-        //     System.out.print("ampak si deli prvo stopničko s stevilom ");
-        //     if (stevilaDistinct[lokacija_najvecjega] == najvecja_ponovitev) {
-
-        //     }
-        // }
+        lokacija_najvecjega++;
+        while(ponavljanje_enakofrekvencnih > 1) {
+            if (stevecDistinct[lokacija_najvecjega] == najvecja_ponovitev) {
+                System.out.println("ampak si deli prvo stopničko s stevilom " + stevilaDistinct[lokacija_najvecjega]);
+                ponavljanje_enakofrekvencnih--;
+            }
+            lokacija_najvecjega++;
+        }
     }
 }
