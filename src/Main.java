@@ -36,6 +36,9 @@ public class Main {
 
         // 8. drugo najmanjšo vrednost števil
         vrniDrugoNajmanjso(stevila);
+
+        // 9. povprecje vseh stevil
+        System.out.println("Povprečje vseh stevil: " + vrniPovprecje(stevila));
     }
 
     public static int countRazlicnaSt(int[] stevila) {
@@ -168,5 +171,19 @@ public class Main {
             }
         }
         System.out.println("Drugo najmanjse stevilo je " + stevila[i]);
+    }
+
+    public static double vrniPovprecje(int[] stevila) {
+        if (stevila.length == 0) {
+            return 0;
+        }
+
+        double skupno = 0;
+
+        for (int stevilo : stevila) {
+            skupno += stevilo;
+        }
+
+        return skupno / stevila.length;
     }
 }
