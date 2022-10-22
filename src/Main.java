@@ -54,6 +54,9 @@ public class Main {
 
         // 13. koliko je palindromnih števil
         System.out.println("Palindromnih stevil je: " + vrniStPalindromnih(stevila));
+
+        // 14. najvecji mozni palindrom manjsi od najvecjega stevila
+        maxMozenPalindrom(stevila);
     }
 
     public static int countRazlicnaSt(int[] stevila) {
@@ -215,7 +218,6 @@ public class Main {
     public static double vrniMediano(int[] stevila) {
         double mediana;
         if (stevila.length % 2 == 0) {
-            System.out.println("debug: " + stevila.length / 2);
             int indeks_spodnjega = (stevila.length / 2) - 1; // -1 zato ker se array zacne z 0
             int indeks_zgornjega = indeks_spodnjega + 1;
 
@@ -236,17 +238,41 @@ public class Main {
         return vsota;
     }
 
+    public static boolean jePalindrom(int stevilo) {
+        String original = Integer.toString(Math.abs(stevilo));
+        String reversed = new StringBuilder(original).reverse().toString();
+        return (original.equals(reversed)) ? true : false;
+    }
+
     public static int vrniStPalindromnih(int[] stevila) {
         int stevec = 0;
 
         for (int stevilo : stevila) {
-            String original = Integer.toString(stevilo);
-            String reversed = new StringBuilder(original).reverse().toString();
-            if (original.equals(reversed)) {
+            if (jePalindrom(stevilo)) {
                 stevec++;
             }
         }
 
         return stevec;
+    }
+
+    public static void maxMozenPalindrom(int[] stevila) {
+        int najvecje = vrniNajvecje(stevila);
+        int int_overflow_safe_stevec = 0;
+        int palindrom = 0;
+        for (int i = najvecje - 1; i >= Integer.MIN_VALUE; i--) {
+            if(jePalindrom(i)) {
+                palindrom = i;
+                int_overflow_safe_stevec++;
+                break;
+            }
+        }
+
+        if (int_overflow_safe_stevec == 0) {
+            System.out.println("Najvecji mozni palindom manjsi od najvecjega stevila je manjsi od dovoljenega stevilskega obmocja");
+        }
+        else {
+            System.out.println("Najvecji mozni palindom manjsi od najvecjega stevila: " + palindrom);
+        }
     }
 }
