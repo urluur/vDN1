@@ -57,6 +57,9 @@ public class Main {
 
         // 14. najvecji mozni palindrom manjsi od najvecjega stevila
         maxMozenPalindrom(stevila);
+
+        // 15. obraten formatiran izpis
+        obratenIzpis(stevila);
     }
 
     public static int countRazlicnaSt(int[] stevila) {
@@ -274,5 +277,13 @@ public class Main {
         else {
             System.out.println("Najvecji mozni palindom manjsi od najvecjega stevila: " + palindrom);
         }
+    }
+
+    public static void obratenIzpis(int[] stevila) {
+        System.out.println("Vsa stevila v obratnem vrstnem redu:");
+        for (int i = stevila.length - 1; i > 0; i--) {
+            System.out.print(stevila[i] + ", ");
+        }
+        System.out.print(stevila[0] + "\n");
     }
 }
