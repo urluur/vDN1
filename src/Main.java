@@ -48,6 +48,9 @@ public class Main {
 
         // 11. mediana
         System.out.println("Mediana: " + vrniMediano(stevila));
+
+        // 12. vsota vseh števil
+        System.out.println("Vsota vseh stevil: " + vrniVsoto(stevila));
     }
 
     public static int countRazlicnaSt(int[] stevila) {
@@ -220,5 +223,13 @@ public class Main {
             mediana = stevila[indeks_srednjega];
         }
         return mediana;
+    }
+
+    public static int vrniVsoto(int[] stevila) {
+        int vsota = 0;
+        for (int stevilo : stevila) {
+            vsota += stevilo;
+        }
+        return vsota;
     }
 }
