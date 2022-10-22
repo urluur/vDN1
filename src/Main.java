@@ -6,8 +6,11 @@ public class Main {
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Koliko stevil zelite vnesti? ");
-        int uporabnikVnosSt = sc.nextInt();
+        int uporabnikVnosSt;
+        do {
+            System.out.print("Koliko stevil zelite vnesti? ");
+            uporabnikVnosSt = sc.nextInt();
+        } while (uporabnikVnosSt < 1);
         int[] stevila = new int[uporabnikVnosSt];
         for (int i = 0; i < stevila.length; i++) {
             System.out.printf("Vnesi %d. stevilo: ", i + 1);
@@ -39,12 +42,12 @@ public class Main {
 
         // 9. povprecje vseh stevil
         System.out.println("Povprečje vseh stevil: " + vrniPovprecje(stevila));
+
+        // 10. standardna deviacija
+        System.out.println("Standardna deviacija: " + stdDeviacija(stevila));
     }
 
     public static int countRazlicnaSt(int[] stevila) {
-        if (stevila.length == 0) {
-            return 0;
-        }
         int[] stevilaDistinct = vrniDistinctArray(stevila);
 
         return stevilaDistinct.length;
@@ -160,6 +163,10 @@ public class Main {
     }
 
     public static void vrniDrugoNajmanjso(int[] stevila) {
+        if (stevila.length < 2) {
+            System.out.println("Drugo najmanjse stevilo ne obstaja");
+            return;
+        }
         Arrays.sort(stevila);
         int dolzina_distinct_arr = vrniDistinctArray(stevila).length;
         int i = 0;
@@ -174,10 +181,6 @@ public class Main {
     }
 
     public static double vrniPovprecje(int[] stevila) {
-        if (stevila.length == 0) {
-            return 0;
-        }
-
         double skupno = 0;
 
         for (int stevilo : stevila) {
@@ -185,5 +188,18 @@ public class Main {
         }
 
         return skupno / stevila.length;
+    }
+
+    public static double vrniVarianco(int[] stevila) {
+        double sestevek = 0;
+        double povprecje = vrniPovprecje(stevila);
+        for(int i = 0; i < stevila.length; i++) {
+            sestevek += Math.pow((stevila[i] - povprecje), 2);
+        }
+        return sestevek / stevila.length;
+    }
+
+    public static double stdDeviacija(int[] stevila) {
+        return Math.sqrt(vrniVarianco(stevila));
     }
 }
