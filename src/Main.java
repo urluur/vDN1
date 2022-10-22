@@ -45,6 +45,9 @@ public class Main {
 
         // 10. standardna deviacija
         System.out.println("Standardna deviacija: " + stdDeviacija(stevila));
+
+        // 11. mediana
+        System.out.println("Mediana: " + vrniMediano(stevila));
     }
 
     public static int countRazlicnaSt(int[] stevila) {
@@ -193,13 +196,29 @@ public class Main {
     public static double vrniVarianco(int[] stevila) {
         double sestevek = 0;
         double povprecje = vrniPovprecje(stevila);
-        for(int i = 0; i < stevila.length; i++) {
-            sestevek += Math.pow((stevila[i] - povprecje), 2);
+        for (int stevilo : stevila) {
+            sestevek += Math.pow((stevilo - povprecje), 2);
         }
         return sestevek / stevila.length;
     }
 
     public static double stdDeviacija(int[] stevila) {
         return Math.sqrt(vrniVarianco(stevila));
+    }
+
+    public static double vrniMediano(int[] stevila) {
+        double mediana = 0;
+        if (stevila.length % 2 == 0) {
+            System.out.println("debug: " + stevila.length / 2);
+            int indeks_spodnjega = (stevila.length / 2) - 1; // -1 zato ker se array zacne z 0
+            int indeks_zgornjega = indeks_spodnjega + 1;
+
+            mediana = (stevila[indeks_spodnjega] + stevila[indeks_zgornjega]) / 2.0;
+        }
+        else {
+            int indeks_srednjega = (int) Math.ceil(stevila.length / 2);
+            mediana = stevila[indeks_srednjega];
+        }
+        return mediana;
     }
 }
