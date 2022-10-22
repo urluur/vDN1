@@ -51,6 +51,9 @@ public class Main {
 
         // 12. vsota vseh števil
         System.out.println("Vsota vseh stevil: " + vrniVsoto(stevila));
+
+        // 13. koliko je palindromnih števil
+        System.out.println("Palindromnih stevil je: " + vrniStPalindromnih(stevila));
     }
 
     public static int countRazlicnaSt(int[] stevila) {
@@ -210,7 +213,7 @@ public class Main {
     }
 
     public static double vrniMediano(int[] stevila) {
-        double mediana = 0;
+        double mediana;
         if (stevila.length % 2 == 0) {
             System.out.println("debug: " + stevila.length / 2);
             int indeks_spodnjega = (stevila.length / 2) - 1; // -1 zato ker se array zacne z 0
@@ -219,7 +222,7 @@ public class Main {
             mediana = (stevila[indeks_spodnjega] + stevila[indeks_zgornjega]) / 2.0;
         }
         else {
-            int indeks_srednjega = (int) Math.ceil(stevila.length / 2);
+            int indeks_srednjega = (int) Math.ceil(stevila.length / 2.0);
             mediana = stevila[indeks_srednjega];
         }
         return mediana;
@@ -231,5 +234,19 @@ public class Main {
             vsota += stevilo;
         }
         return vsota;
+    }
+
+    public static int vrniStPalindromnih(int[] stevila) {
+        int stevec = 0;
+
+        for (int stevilo : stevila) {
+            String original = Integer.toString(stevilo);
+            String reversed = new StringBuilder(original).reverse().toString();
+            if (original.equals(reversed)) {
+                stevec++;
+            }
+        }
+
+        return stevec;
     }
 }
