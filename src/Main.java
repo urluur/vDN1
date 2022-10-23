@@ -182,17 +182,18 @@ public class Main {
             System.out.println("Drugo najmanjse stevilo ne obstaja");
             return;
         }
-        Arrays.sort(stevila);
-        int dolzina_distinct_arr = vrniDistinctArray(stevila).length;
+        int[] stevila_sort = stevila.clone();
+        Arrays.sort(stevila_sort);
+        int dolzina_distinct_arr = vrniDistinctArray(stevila_sort).length;
         int i = 0;
-        while (stevila[i] == stevila[0]) {
+        while (stevila_sort[i] == stevila_sort[0]) {
             i++;
             if(i > dolzina_distinct_arr) {
                 System.out.println("Drugo najmanjse stevilo ne obstaja");
                 return;
             }
         }
-        System.out.println("Drugo najmanjse stevilo je " + stevila[i]);
+        System.out.println("Drugo najmanjse stevilo je " + stevila_sort[i]);
     }
 
     public static double vrniPovprecje(int[] stevila) {
