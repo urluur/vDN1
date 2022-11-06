@@ -245,7 +245,7 @@ public class Main {
     public static boolean jePalindrom(int stevilo) {
         String original = Integer.toString(Math.abs(stevilo));
         String reversed = new StringBuilder(original).reverse().toString();
-        return (original.equals(reversed)) ? true : false;
+        return original.equals(reversed);
     }
 
     public static int vrniStPalindromnih(int[] stevila) {
@@ -264,7 +264,7 @@ public class Main {
         int najvecje = vrniNajvecje(stevila);
         int int_overflow_safe_stevec = 0;
         int palindrom = 0;
-        for (int i = najvecje - 1; i >= Integer.MIN_VALUE; i--) {
+        for (int i = najvecje - 1; i > Integer.MIN_VALUE; i--) {
             if(jePalindrom(i)) {
                 palindrom = i;
                 int_overflow_safe_stevec++;
