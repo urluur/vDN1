@@ -62,13 +62,21 @@ public class Main {
         obratenIzpis(stevila);
     }
 
+    /**
+     * Vrne koliko razlicnih stevil je v tabeli
+     * @param stevila Opazovana tabela
+     * @return Stevilo razlicnih stevil
+     */
     public static int countRazlicnaSt(int[] stevila) {
         int[] stevilaDistinct = vrniDistinctArray(stevila);
-
         return stevilaDistinct.length;
-
     }
 
+    /**
+     * Vrne tabelo stevil, ki se ne ponavljajo
+     * @param stevila Opazovana tabela
+     * @return Tabela brez ponavljajocih stevil
+     */
     public static int[] vrniDistinctArray(int[] stevila) {
         int[] stevilaDistinctUncut = new int[stevila.length];
 
@@ -98,6 +106,10 @@ public class Main {
         return stevilaDistinctCut;
     }
 
+    /**
+     * Izpise stevilo sodih in stevilo lihih stevil v tabeli
+     * @param stevila Opazovana tabela
+     */
     public static void steviloSodihInLihih(int[] stevila) {
         int st_sodih = 0;
         int st_lihih = 0;
@@ -114,6 +126,10 @@ public class Main {
         System.out.printf("Stevilo lihih stevil: %d\n", st_lihih);
     }
 
+    /**
+     * Izpise procentualno vrednost ponovitve vsakega stevila v tabeli
+     * @param stevila Opazovana tabela
+     */
     public static void frekvencaPojavitveProcenti(int[] stevila) {
         int[] stevilaDistinct = vrniDistinctArray(stevila);
         double st_razlicnih = stevila.length;
@@ -130,6 +146,10 @@ public class Main {
         }
     }
 
+    /**
+     * Izpise stevilo/a li se najveckrat ponovi/jo
+     * @param stevila Opazovana tabela
+     */
     public static void steviloKiSeNajveckratPonovi(int[] stevila) {
         int[] stevilaDistinct = vrniDistinctArray(stevila);
         int[] stevecDistinct = new int[stevilaDistinct.length];
@@ -167,6 +187,11 @@ public class Main {
         }
     }
 
+    /**
+     * Vrne najvecje stevilo in tabele
+     * @param stevila Opazovana tabela
+     * @return Najvecje stevilo
+     */
     public static int vrniNajvecje(int[] stevila) {
         int najvecje = Integer.MIN_VALUE;
         for (int stevilo : stevila) {
@@ -177,6 +202,10 @@ public class Main {
         return najvecje;
     }
 
+    /**
+     * Vrne drugo najmanjse stevilo iz tabele
+     * @param stevila Opazovana tabela
+     */
     public static void vrniDrugoNajmanjso(int[] stevila) {
         if (stevila.length < 2) {
             System.out.println("Drugo najmanjse stevilo ne obstaja");
@@ -196,6 +225,11 @@ public class Main {
         System.out.println("Drugo najmanjse stevilo je " + stevila_sort[i]);
     }
 
+    /**
+     * Vrne povprecje (oz. aritmeticno sredino) vseh stevil v tabeli
+     * @param stevila Opazovana tabela
+     * @return Povprecje stevil
+     */
     public static double vrniPovprecje(int[] stevila) {
         double skupno = 0;
 
@@ -206,6 +240,12 @@ public class Main {
         return skupno / stevila.length;
     }
 
+
+    /**
+     * Izračuna varianco (verjetnost distribucije) vseh stevil iz tabele
+     * @param stevila Opazovana tabela
+     * @return Stevilo varianca
+     */
     public static double vrniVarianco(int[] stevila) {
         double sestevek = 0;
         double povprecje = vrniPovprecje(stevila);
@@ -215,10 +255,20 @@ public class Main {
         return sestevek / stevila.length;
     }
 
+    /**
+     * Izracuna standardno deviacijo, potrebna za varianco
+     * @param stevila Opazovana tabela
+     * @return Stevilo standardna deviacija
+     */
     public static double stdDeviacija(int[] stevila) {
         return Math.sqrt(vrniVarianco(stevila));
     }
 
+    /**
+     * Izracuna mediano stevil v tabeli
+     * @param stevila Opazovana tabela
+     * @return Stevilo mediana
+     */
     public static double vrniMediano(int[] stevila) {
         double mediana;
         if (stevila.length % 2 == 0) {
@@ -234,6 +284,11 @@ public class Main {
         return mediana;
     }
 
+    /**
+     * Sesteje vsa stevila
+     * @param stevila Opazovana tabela
+     * @return Sestevek vseh stevil v tabel
+     */
     public static int vrniVsoto(int[] stevila) {
         int vsota = 0;
         for (int stevilo : stevila) {
@@ -242,12 +297,22 @@ public class Main {
         return vsota;
     }
 
+    /**
+     * Ugotovi ali je stevilo palindrom (je isto, ni vazno s katere strani beremo stevke)
+     * @param stevilo Opazovano stevilo
+     * @return True ali False
+     */
     public static boolean jePalindrom(int stevilo) {
         String original = Integer.toString(Math.abs(stevilo));
         String reversed = new StringBuilder(original).reverse().toString();
         return original.equals(reversed);
     }
 
+    /**
+     * Steje koliko stevil iz tabele je palindromnih
+     * @param stevila Opazovana tabela stevil
+     * @return Stevilo palindromnih stevil
+     */
     public static int vrniStPalindromnih(int[] stevila) {
         int stevec = 0;
 
@@ -260,6 +325,10 @@ public class Main {
         return stevec;
     }
 
+    /**
+     * Najde najvecji palindrom, ki je manjsi od najvecjega stevila v tabeli
+     * @param stevila Opazovana tabela
+     */
     public static void maxMozenPalindrom(int[] stevila) {
         int najvecje = vrniNajvecje(stevila);
         int int_overflow_safe_stevec = 0;
@@ -280,6 +349,10 @@ public class Main {
         }
     }
 
+    /**
+     * Izpise tabelo v obratnem vrstnem redu
+     * @param stevila Izpisana tabela
+     */
     public static void obratenIzpis(int[] stevila) {
         System.out.println("Vsa stevila v obratnem vrstnem redu:");
         for (int i = stevila.length - 1; i > 0; i--) {
