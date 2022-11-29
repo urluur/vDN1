@@ -299,6 +299,7 @@ public class Main {
 
     /**
      * Ugotovi ali je stevilo palindrom (je isto, ni vazno s katere strani beremo stevke)
+     * vir: <a href="https://www.javatpoint.com/how-to-check-palindrome-string-in-java">javapoint.com</a>
      * @param stevilo Opazovano stevilo
      * @return True ali False
      */
