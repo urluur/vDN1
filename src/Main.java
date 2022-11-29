@@ -6,12 +6,12 @@ public class Main {
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int uporabnikVnosSt;
+        int uporabnik_vnos_st;
         do {
             System.out.print("Koliko stevil zelite vnesti? ");
-            uporabnikVnosSt = sc.nextInt();
-        } while (uporabnikVnosSt < 1);
-        int[] stevila = new int[uporabnikVnosSt];
+            uporabnik_vnos_st = sc.nextInt();
+        } while (uporabnik_vnos_st < 1);
+        int[] stevila = new int[uporabnik_vnos_st];
         for (int i = 0; i < stevila.length; i++) {
             System.out.printf("Vnesi %d. stevilo: ", i + 1);
             stevila[i] = sc.nextInt();
@@ -20,10 +20,10 @@ public class Main {
 
 
         // 1. število elementov (števil)
-        System.out.printf("Stevilo elementov: %d\n", stevila.length);
+        System.out.printf("\nStevilo elementov: %d\n", stevila.length);
 
         // 2. število različnih 
-        System.out.printf("Stevilo razlicnih elementov: %d\n", countRazlicnaSt(stevila));
+        System.out.printf("Stevilo razlicnih elementov: %d\n\n", countRazlicnaSt(stevila));
         
         // 3. 4.  število sodih in lihih števil
         steviloSodihInLihih(stevila);
@@ -35,25 +35,25 @@ public class Main {
         steviloKiSeNajveckratPonovi(stevila);
 
         // 7. največje število
-        System.out.println("Najvecje stevilo je: " + vrniNajvecje(stevila));
+        System.out.printf("Najvecje stevilo je: %d\n", vrniNajvecje(stevila));
 
         // 8. drugo najmanjšo vrednost števil
         vrniDrugoNajmanjso(stevila);
 
         // 9. povprecje vseh stevil
-        System.out.println("Povprečje vseh stevil: " + vrniPovprecje(stevila));
+        System.out.printf("Povprecje vseh stevil: %f\n", vrniPovprecje(stevila));
 
         // 10. standardna deviacija
-        System.out.println("Standardna deviacija: " + stdDeviacija(stevila));
+        System.out.printf("Standardna deviacija: %f\n", stdDeviacija(stevila));
 
         // 11. mediana
-        System.out.println("Mediana: " + vrniMediano(stevila));
+        System.out.printf("Mediana: %f\n\n", vrniMediano(stevila));
 
         // 12. vsota vseh števil
-        System.out.println("Vsota vseh stevil: " + vrniVsoto(stevila));
+        System.out.printf("Vsota vseh stevil: %d\n\n", vrniVsoto(stevila));
 
         // 13. koliko je palindromnih števil
-        System.out.println("Palindromnih stevil je: " + vrniStPalindromnih(stevila));
+        System.out.printf("Palindromnih stevil je: %d\n", vrniStPalindromnih(stevila));
 
         // 14. najvecji mozni palindrom manjsi od najvecjega stevila
         maxMozenPalindrom(stevila);
@@ -68,8 +68,8 @@ public class Main {
      * @return Stevilo razlicnih stevil
      */
     public static int countRazlicnaSt(int[] stevila) {
-        int[] stevilaDistinct = vrniDistinctArray(stevila);
-        return stevilaDistinct.length;
+        int[] stevila_distinct = vrniDistinctArray(stevila);
+        return stevila_distinct.length;
     }
 
     /**
@@ -78,32 +78,32 @@ public class Main {
      * @return Tabela brez ponavljajocih stevil
      */
     public static int[] vrniDistinctArray(int[] stevila) {
-        int[] stevilaDistinctUncut = new int[stevila.length];
+        int[] stevila_distinct_uncut = new int[stevila.length];
 
         int count = 0;
         
         for (int i = 0; i < stevila.length; i++) {
             boolean razlicno = true;
             if (i == 0) {
-                stevilaDistinctUncut[i] = stevila[i];
+                stevila_distinct_uncut[i] = stevila[i];
                 count++;
                 continue;
             }
             for (int j = 0; j <= count; j++) {
-                if (stevila[i] == stevilaDistinctUncut[j]) {
+                if (stevila[i] == stevila_distinct_uncut[j]) {
                     razlicno = false;
                     break;
                 }
             }
             if (razlicno) {
-                stevilaDistinctUncut[count] = stevila[i];
+                stevila_distinct_uncut[count] = stevila[i];
                 count++;
             }
         }
 
-        int[] stevilaDistinctCut = new int[count];
-        System.arraycopy(stevilaDistinctUncut, 0, stevilaDistinctCut, 0, count);
-        return stevilaDistinctCut;
+        int[] stevila_distinct_cut = new int[count];
+        System.arraycopy(stevila_distinct_uncut, 0, stevila_distinct_cut, 0, count);
+        return stevila_distinct_cut;
     }
 
     /**
@@ -123,7 +123,7 @@ public class Main {
             }
         }
         System.out.printf("Stevilo sodih stevil: %d\n", st_sodih);
-        System.out.printf("Stevilo lihih stevil: %d\n", st_lihih);
+        System.out.printf("Stevilo lihih stevil: %d\n\n", st_lihih);
     }
 
     /**
@@ -131,10 +131,10 @@ public class Main {
      * @param stevila Opazovana tabela
      */
     public static void frekvencaPojavitveProcenti(int[] stevila) {
-        int[] stevilaDistinct = vrniDistinctArray(stevila);
+        int[] stevila_distinct = vrniDistinctArray(stevila);
         double st_razlicnih = stevila.length;
 
-        for (int stevilo : stevilaDistinct) {
+        for (int stevilo : stevila_distinct) {
             int st_ponovitev = 0;
             for (int trenutno_st : stevila) {
                 if (stevilo == trenutno_st) {
@@ -144,6 +144,7 @@ public class Main {
             double odstotki = (st_ponovitev / st_razlicnih) * 100;
             System.out.printf("Stevilo %d predstavlja %f%% vseh stevil.\n", stevilo, odstotki);
         }
+        System.out.println();
     }
 
     /**
@@ -151,40 +152,46 @@ public class Main {
      * @param stevila Opazovana tabela
      */
     public static void steviloKiSeNajveckratPonovi(int[] stevila) {
-        int[] stevilaDistinct = vrniDistinctArray(stevila);
-        int[] stevecDistinct = new int[stevilaDistinct.length];
+        int[] stevila_distinct = vrniDistinctArray(stevila);
+        int[] stevec_distinct = new int[stevila_distinct.length];
 
+        // preverimo za vsako og stevilo kolikokrat se ponovi
         for (int stevilo : stevila) {
-            for (int i = 0; i < stevilaDistinct.length; i++) {
-                if (stevilo == stevilaDistinct[i]) {
-                    stevecDistinct[i]++;
+            for (int i = 0; i < stevila_distinct.length; i++) {
+                if (stevilo == stevila_distinct[i]) {
+                    stevec_distinct[i]++;
                 }
             }
         }
+        // vazni sta tabeli stevila_distinct in stevec_distinct ker za vsako distinct stevilo
+        // je na istolezecem mestu v tabeli stevec_distinct njegovo stevilo ponovitev
+
         int lokacija_najvecjega = 0; 
         int ponavljanje_enakofrekvencnih = 0;
         int najvecja_ponovitev = 0;
 
-        for (int i = 0; i < stevecDistinct.length; i++) {
-            if (stevecDistinct[i] > najvecja_ponovitev) {
-                najvecja_ponovitev = stevecDistinct[i];
+        // ugotovimo ali se razlicna stevila ponavljajo najveckrat
+        for (int i = 0; i < stevec_distinct.length; i++) {
+            if (stevec_distinct[i] > najvecja_ponovitev) {
+                najvecja_ponovitev = stevec_distinct[i];
                 lokacija_najvecjega = i;
                 ponavljanje_enakofrekvencnih = 1;
             }
-            else if (stevecDistinct[i] == najvecja_ponovitev) {
+            else if (stevec_distinct[i] == najvecja_ponovitev) {
                 ponavljanje_enakofrekvencnih++;
             }
         }
 
-        System.out.println("Najveckrat se ponovi stevilo " + stevilaDistinct[lokacija_najvecjega]);
+        System.out.println("Najveckrat se ponovi stevilo " + stevila_distinct[lokacija_najvecjega]);
         lokacija_najvecjega++;
         while(ponavljanje_enakofrekvencnih > 1) {
-            if (stevecDistinct[lokacija_najvecjega] == najvecja_ponovitev) {
-                System.out.println("ampak si deli prvo stopničko s stevilom " + stevilaDistinct[lokacija_najvecjega]);
+            if (stevec_distinct[lokacija_najvecjega] == najvecja_ponovitev) {
+                System.out.println("ampak si deli prvo stopničko s stevilom " + stevila_distinct[lokacija_najvecjega]);
                 ponavljanje_enakofrekvencnih--;
             }
             lokacija_najvecjega++;
         }
+        System.out.println();
     }
 
     /**
@@ -222,7 +229,7 @@ public class Main {
                 return;
             }
         }
-        System.out.println("Drugo najmanjse stevilo je " + stevila_sort[i]);
+        System.out.printf("Drugo najmanjse stevilo je %d\n\n", stevila_sort[i]);
     }
 
     /**
@@ -232,14 +239,11 @@ public class Main {
      */
     public static double vrniPovprecje(int[] stevila) {
         double skupno = 0;
-
         for (int stevilo : stevila) {
             skupno += stevilo;
         }
-
         return skupno / stevila.length;
     }
-
 
     /**
      * Izračuna varianco (verjetnost distribucije) vseh stevil iz tabele
@@ -247,12 +251,12 @@ public class Main {
      * @return Stevilo varianca
      */
     public static double vrniVarianco(int[] stevila) {
-        double sestevek = 0;
+        double vsota = 0;
         double povprecje = vrniPovprecje(stevila);
         for (int stevilo : stevila) {
-            sestevek += Math.pow((stevilo - povprecje), 2);
+            vsota += Math.pow((stevilo - povprecje), 2);
         }
-        return sestevek / stevila.length;
+        return vsota / stevila.length;
     }
 
     /**
@@ -278,6 +282,9 @@ public class Main {
             mediana = (stevila[indeks_spodnjega] + stevila[indeks_zgornjega]) / 2.0;
         }
         else {
+            if (stevila.length == 1) {
+                return 1;
+            }
             int indeks_srednjega = (int) Math.ceil(stevila.length / 2.0);
             mediana = stevila[indeks_srednjega];
         }
@@ -287,7 +294,7 @@ public class Main {
     /**
      * Sesteje vsa stevila
      * @param stevila Opazovana tabela
-     * @return Sestevek vseh stevil v tabel
+     * @return vsota vseh stevil v tabel
      */
     public static int vrniVsoto(int[] stevila) {
         int vsota = 0;
@@ -332,22 +339,23 @@ public class Main {
      */
     public static void maxMozenPalindrom(int[] stevila) {
         int najvecje = vrniNajvecje(stevila);
-        int int_overflow_safe_stevec = 0;
+        boolean overflow_safe = false;
         int palindrom = 0;
         for (int i = najvecje - 1; i > Integer.MIN_VALUE; i--) {
             if(jePalindrom(i)) {
                 palindrom = i;
-                int_overflow_safe_stevec++;
+                overflow_safe = true;
                 break;
             }
         }
 
-        if (int_overflow_safe_stevec == 0) {
-            System.out.println("Najvecji mozni palindom manjsi od najvecjega stevila je manjsi od dovoljenega stevilskega obmocja");
-        }
-        else {
+        if (overflow_safe) {
             System.out.println("Najvecji mozni palindom manjsi od najvecjega stevila: " + palindrom);
         }
+        else {
+            System.out.println("Najvecji mozni palindom manjsi od najvecjega stevila je manjsi od dovoljenega stevilskega obmocja");
+        }
+        System.out.println();
     }
 
     /**
